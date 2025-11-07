@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CopyFileToFolders Include="lib\SDL3.dll" />
+    <CopyFileToFolders Include="lib\SDL3_image.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Managers\TextureManager.cpp" />
+    <ClCompile Include="src\Classes\GameObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Game.hpp" />
+    <ClInclude Include="src\Managers\TextureManager.hpp" />
+    <ClInclude Include="src\Classes\GameObject.hpp" />
+    <ClInclude Include="src\DataTypes\Vector2.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\sprites\playerSprite.png" />
+  </ItemGroup>
+</Project>
