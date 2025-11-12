@@ -9,9 +9,8 @@ private:
 	SDL_Texture* m_ObjectTexture;
 	SDL_FRect m_SourceRectangle, m_DestinationRectangle;
 
-	SDL_Renderer* Renderer;
 public:
-	GameObject(const char* TextureSheet, SDL_Renderer* Renderer, Vector2 InitialPosition);
+	GameObject(const char* TextureSheet, Vector2 InitialPosition);
 
 	void Update();
 

@@ -1,10 +1,15 @@
 #include "Game.hpp"
-#include "Classes/GameObject.hpp"
+#include "Classes/Map.hpp"
+#include "ECS/Components.hpp"
 
-GameObject* player;
+Map* map;
+SDL_Renderer* Game::Renderer = nullptr;
+
+Manager manager;
+auto& Player(manager.AddEntity());
 
 Game::Game()
-	: m_IsRunning(false), m_Window(nullptr), m_Renderer(nullptr)
+	: m_IsRunning(false), m_Window(nullptr)
 {
 
 }
@@ -29,10 +34,10 @@ void Game::Init(const char* title, int width, int height, bool fullscreen)
 			std::cout << "Window Created" << std::endl;
 		}
 
-		m_Renderer = SDL_CreateRenderer(m_Window, NULL);
-		if (m_Renderer)
+		Renderer = SDL_CreateRenderer(m_Window, NULL);
+		if (Renderer)
 		{
-			SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, 255);
+			SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255);
 			std::cout << "Renderer Created" << std::endl;
 		}
 
@@ -44,8 +49,12 @@ void Game::Init(const char* title, int width, int height, bool fullscreen)
 
 	}
 
-	player = new GameObject("assets/sprites/playerSprite.png", m_Renderer, {100, 100});
-	SDL_SetTextureScaleMode(player->GetObjectRenderer(), SDL_SCALEMODE_NEAREST);
+	//SDL_SetTextureScaleMode(player->GetObjectRenderer(), SDL_SCALEMODE_NEAREST);
+	//map = new Map();
+
+	Player.AddComponent<PositionComponent>();
+	Player.AddComponent<SpriteComponent>("assets/sprites/playerSprite.png");
+	SDL_SetTextureScaleMode(Player.GetComponent<SpriteComponent>().GetTexture(), SDL_SCALEMODE_NEAREST);
 }
 
 void Game::HandleEvents()
@@ -65,20 +74,23 @@ void Game::HandleEvents()
 
 void Game::Update()
 {
-	player->Update();
+	manager.Refresh();
+	manager.Update();
+	std::cout << Player.GetComponent<PositionComponent>().GetPosition() << std::endl;
 }
 
 void Game::Render()
 {
-	SDL_RenderClear(m_Renderer);
-	player->Render();
-	SDL_RenderPresent(m_Renderer);
+	SDL_RenderClear(Renderer);
+	//map->DrawMap();
+	manager.Draw();
+	SDL_RenderPresent(Renderer);
 }
 
 void Game::Clean()
 {
 	SDL_DestroyWindow(m_Window);
-	SDL_DestroyRenderer(m_Renderer);
+	SDL_DestroyRenderer(Renderer);
 	SDL_Quit();
 
 	std::cout << "Game Cleaned." << std::endl;

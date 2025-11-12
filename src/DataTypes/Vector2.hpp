@@ -41,5 +41,11 @@ struct Vector2
     {
         return Vector2(x / other.x, y / other.y);
     }
+
+    friend std::ostream& operator<<(std::ostream& os, const Vector2& v)
+    {
+        os << "(" << v.x << ", " << v.y << ")";
+        return os;
+    }
 };
 

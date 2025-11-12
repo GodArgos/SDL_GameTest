@@ -1,9 +1,8 @@
 #include "GameObject.hpp"
 #include "../Managers/TextureManager.hpp"
 
-GameObject::GameObject(const char* TextureSheet, SDL_Renderer* _Renderer, Vector2 InitialPosition)
-	: Renderer(_Renderer),
-	m_ObjectTexture(TextureManager::LoadTexture(TextureSheet, _Renderer)),
+GameObject::GameObject(const char* TextureSheet, Vector2 InitialPosition)
+	: m_ObjectTexture(TextureManager::LoadTexture(TextureSheet)),
 	m_Position(InitialPosition),
 	m_SourceRectangle{ 0.f, 0.f, 0.f, 0.f },
 	m_DestinationRectangle{ 0.f, 0.f, 0.f, 0.f }
@@ -26,7 +25,7 @@ void GameObject::Update()
 
 void GameObject::Render()
 {
-	SDL_RenderTexture(Renderer, m_ObjectTexture, &m_SourceRectangle, &m_DestinationRectangle);
+	SDL_RenderTexture(Game::Renderer, m_ObjectTexture, &m_SourceRectangle, &m_DestinationRectangle);
 }
 
 GameObject::~GameObject()

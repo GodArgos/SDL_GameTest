@@ -11,7 +11,7 @@ int main(int arg, const char* argv[])
 	int frameTime; // Time in ms that took n loop (handle, update, render, etc)
 	
 	game = new Game();
-	game->Init("Title", 1280, 720, false);
+	game->Init("Title", 800, 640, false);
 
 	while (game->IsRunning())
 	{

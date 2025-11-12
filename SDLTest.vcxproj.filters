@@ -9,14 +9,23 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Managers\TextureManager.cpp" />
     <ClCompile Include="src\Classes\GameObject.cpp" />
+    <ClCompile Include="src\Classes\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\Managers\TextureManager.hpp" />
     <ClInclude Include="src\Classes\GameObject.hpp" />
     <ClInclude Include="src\DataTypes\Vector2.hpp" />
+    <ClInclude Include="src\Classes\Map.hpp" />
+    <ClInclude Include="src\ECS\ECS.hpp" />
+    <ClInclude Include="src\ECS\Components.hpp" />
+    <ClInclude Include="src\ECS\PositionComponent.hpp" />
+    <ClInclude Include="src\ECS\SpriteComponent.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\sprites\playerSprite.png" />
+    <Image Include="assets\sprites\dirt.png" />
+    <Image Include="assets\sprites\grass.png" />
+    <Image Include="assets\sprites\water.png" />
   </ItemGroup>
 </Project>
